@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>knowledge base 20211209</title>
+    <style type="text/css">
+        ul{/*设置导航栏的框框*/
+           margin: 0px auto;/*框框整体的位置，px是指离网页的顶部和下部的距离，auto控制的是左右距离为自动调节*/
+           width: 1500px;/*框框的宽度*/
+           height: 100px;/*框框的长度*/
+           padding: 0px;/*将框框的padding设置为零，不然会导致框框里的内容与框边缘有间隔*/
+           border:1px solid rgb(59, 50, 172);/*添加边框*/
+       }
+       li{
+           list-style-type: none;/* 去掉li前的点 */
+           float: left;/*将li设置成做浮动，变为联动*/
+       }
+       pre {
+           outline: 1px solid #ccc; 
+           padding: 5px; margin: 5px;
+           white-space: pre-wrap; 
+           word-wrap: break-word; 
+           overflow-y: scroll;
+           height: 480px;}
+       .string { color: green; }
+       .number { color: darkorange; }
+       .boolean { color: blue; }
+       .null { color: magenta; }
+       .key { color: red; }
+       a{
+           display: block;/*将a变成块状*/
+           width: 500px;/*设置块的宽度*/
+           height: 100px;/*设置块的长度*/
+           font-family: Microsoft Yahei;
+           line-height: 100px;/*设置字体在块中的高度*/
+           background-color: #2f4f4f;
+           margin: 0px 0px;/*块里的高宽通过margin设置*/
+           color: #fff;
+           text-align: center;/*字体居中*/
+           text-decoration: none;/*去掉下划线*/
+           font-size: 15px;
+       }
+       a:hover{
+           background-color: #d81d65;
+           cursor: pointer;
+       }
+       .active {
+           background-color: #d81d65;
+       }
+       .search {
+           background-color: skyblue;
+           width: 50px;
+           height: 50px;
+           line-height: 50px;
+           text-align: center;
+           margin: auto;
+       }
+       .t{
+        position:fixed;
+        bottom:0;
+        background-color:rgb(23, 53, 223);
+        clear:both;
+        text-align:center;
+        width: 1500px;
+        }
+   </style>
+   <script language="javascript">
+       function syntaxHighlight(json) {
+            if (typeof json != 'string') {
+                console.log('ppp');
+                json = JSON.stringify(json, undefined, 4);
+            }
+            json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, 
+            function(match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+                });
+            }
+   </script>
+</head>
+<body>
+
+<div id="container" style="width:1500px;">
+    <div id="header" style="background-color:#FFA500;">
+        <ul class=daohang>
+			<li><a id="li1"  class="li" onclick="selectType('li1','Database')">Database</a></li>
+			<li><a id="li2" class="li" onclick="selectType('li2','Toolkit')" >Toolkit</a></li>
+			<li><a id="li3" class="li" onclick="selectType('li3','Project')">Project</a></li>
+		</ul>
+        </div>
+        <iframe id="fraSubmit1" name="fraSubmit" style="display:none;" scrolling="yes"></iframe>
+        <div id="menu" style="background-color:rgb(54, 99, 184);height:100px;width:1500px;">
+            <form method="post" id='Did' style="display:none" onsubmit="return false">
+                <input hidden name="k_type" value="Database">
+                <input id="c1" type="checkbox" name="mod" value="Clinical/Behavioral" /> 
+                <label for="c1">Clinical/Behavioral</label>
+                <input id="c2" type="checkbox"  name="mod" value="Neuroimaging" />
+                <label for="c2">Neuroimaging</label>
+                <input id="c3" type="checkbox"  name="mod" value="Electrophysiology" /> 
+                <label for="c3">Electrophysiology</label>
+                <input id="c4" type="checkbox"  name="mod" value="Molecular" /> 
+                <label for="c4">Molecular</label><br />
+                <input id="c5" type="checkbox" name="mod" value="Healthy" /> 
+                <label for="c5">Healthy</label>
+                <input id="c6" type="checkbox"  name="mod" value="Autism" />
+                <label for="c6">Autism</label>
+                <input id="c7" type="checkbox"  name="mod" value="ADHD" /> 
+                <label for="c7">ADHD</label>
+                <input id="c8" type="checkbox"  name="mod" value="Schizophrenia" /> 
+                <label for="c8">Schizophrenia</label>
+                <input id="c9" type="checkbox" name="mod" value="Bipolar disorder" /> 
+                <label for="c9">Bipolar disorder</label>
+                <input id="c10" type="checkbox"  name="mod" value="Sleep" />
+                <label for="c10">Sleep</label>
+                <input id="c11" type="checkbox"  name="mod" value="Epilepsy" /> 
+                <label for="c11">Epilepsy</label>
+                <input id="c12" type="checkbox"  name="mod" value="Traumatic brain injury" /> 
+                <label for="c12">Traumatic brain injury</label>
+                <input id="c13" type="checkbox" name="mod" value="Cancer" /> 
+                <label for="c13">Cancer</label>
+                <input id="c14" type="checkbox"  name="mod" value="Stroke" />
+                <label for="c14">Stroke</label>
+                <input id="c15" type="checkbox"  name="mod" value="AD" /> 
+                <label for="c15">AD</label>
+                <input id="c16" type="checkbox"  name="mod" value="Other" /> 
+                <label for="c16">Other</label>
+                <br />
+                <br />
+                <center><input type="button" name='test' value="submit" onclick="hd1()"></center>
+            </form>
+
+            <form method="post" id='Tid' style="display:none" onsubmit="return false">
+                <input hidden name="k_type" value="Toolkit">
+                <input id="t1" type="checkbox" name="mod" value="Clinical/Behavioral" /> 
+                <label for="t1">Clinical/Behavioral</label>
+                <input id="t2" type="checkbox"  name="mod" value="Neuroimaging" />
+                <label for="t2">Neuroimaging</label>
+                <input id="t3" type="checkbox"  name="mod" value="Electrophysiology" /> 
+                <label for="t3">Electrophysiology</label>
+                <input id="t4" type="checkbox"  name="mod" value="Molecular" /> 
+                <label for="t4">Molecular</label><br />
+                <input id="t5" type="checkbox" name="mod" value="Data Capture" /> 
+                <label for="t5">Data Capture</label>
+                <input id="t6" type="checkbox"  name="mod" value="Quality control" />
+                <label for="t6">Quality control</label>
+                <input id="t7" type="checkbox"  name="mod" value="Data Analysis" /> 
+                <label for="t7">Data Analysis</label>
+                <input id="t8" type="checkbox"  name="mod" value="Data Visualization" /> 
+                <label for="t8">Data Visualization</label>
+                <input id="t9" type="checkbox" name="mod" value="Data Management" /> 
+                <label for="t9">Data Management</label>
+                <input id="t10" type="checkbox"  name="mod" value="Data Sharing" />
+                <label for="t10">Data Sharing</label>
+                <br />
+                <br />
+                <center><input type="button" name='test' value="submit" onclick="hd2()"></center>
+            </form>
+
+            <form method="post" id='Pid' style="display:none" onsubmit="return false">
+                <input hidden name="k_type" value="Project"><br />
+                <br />
+                <br />
+                <center><input type="button" name='test' value="submit" onclick="hd3()"></center>
+            </form>
+        </div>
+        
+        <div hidden id="content" style="background-color:#EEEEEE;height:480px;width:1500px;">{{content}}</div>
+        <pre id='test'></pre>
+
+        <div id="footer" class='t'>版权 © hdliang@iflytek.com</div>
+    </div>   
+    <script type="text/javascript">
+        function hd1() {
+            //event.preventDefault()
+            var res= $.ajax({
+                type : "POST",
+                dataType: "text",
+                url : 'http://localhost:8080/',
+                cache : false,
+                async : false,
+                data : $('#Did').serialize(),
+                contentType : "application/x-www-form-urlencoded;charset=utf-8"
+                });
+            var newData = res.responseText
+            console.log(res)
+            var result = JSON.stringify(JSON.parse(newData), null, 2)
+            $("#test").html(syntaxHighlight(result));  
+        }
+        function hd2() {
+            //event.preventDefault()
+            var res= $.ajax({
+                type : "POST",
+                dataType: "text",
+                url : 'http://localhost:8080/',
+                cache : false,
+                async : false,
+                data : $('#Tid').serialize(),
+                contentType : "application/x-www-form-urlencoded;charset=utf-8"
+                });
+            var newData = res.responseText
+            console.log(res)
+            var result = JSON.stringify(JSON.parse(newData), null, 2)
+            $("#test").html(syntaxHighlight(result));  
+        }
+        function hd3() {
+            //event.preventDefault()
+            var res= $.ajax({
+                type : "POST",
+                dataType: "text",
+                url : 'http://localhost:8080/',
+                cache : false,
+                async : false,
+                data : $('#Pid').serialize(),
+                contentType : "application/x-www-form-urlencoded;charset=utf-8"
+                });
+            var newData = res.responseText
+            console.log(res)
+            var result = JSON.stringify(JSON.parse(newData), null, 2)
+            $("#test").html(syntaxHighlight(result));  
+        }
+    </script>
+    <script>
+        //var newData = document.getElementById('content').innerText;
+        //var result = JSON.stringify(JSON.parse(newData), null, 2)
+        //show.innerHTML = JSON.stringify(newData, null, 4);
+        //$('#test').html(result);
+        //$('#test').html(syntaxHighlight(result));
+        //show.innerHTML = syntaxHighlight(newData);
+    </script>
+    <script>
+        function selectType(id, value) {
+            //let documentLis = document.getElementsByClassName('li');
+            //for (let li of documentLis) {
+            //   li.className = 'li';
+            //}
+            console.log(value)
+            if( value=="Database"){
+                console.log(000);
+                document.getElementById(id).className = 'li active';
+                document.getElementById('li2').className = 'li';
+                document.getElementById('li3').className = 'li';
+                var hd1 = document.getElementById('Did');
+                hd1.style.display = "";
+                document.getElementById('Tid').style.display = "none";
+                document.getElementById('Pid').style.display = "none";
+            }
+            else if(value=="Toolkit"){
+                console.log(123);
+                document.getElementById(id).className = 'li active';
+                document.getElementById('li1').className = 'li';
+                document.getElementById('li3').className = 'li';
+                var hd2 = document.getElementById('Tid');
+                hd2.style.display = "";
+                document.getElementById('Did').style.display = "none";
+                document.getElementById('Pid').style.display = "none";
+            }
+            else if(value=="Project"){
+                console.log(456);
+                document.getElementById(id).className = 'li active';
+                document.getElementById('li1').className = 'li';
+                document.getElementById('li2').className = 'li';
+                var hd3 = document.getElementById('Pid');
+                hd3.style.display = "";
+                document.getElementById('Did').style.display = "none";
+                document.getElementById('Tid').style.display = "none";
+            }
+        }
+    </script>     
+</body>
+</html>
