@@ -11,7 +11,7 @@ In order to accelerate progress in cohort studies, we proposed a hierarchical ne
   
   ##Step2：Start the flask-based API service;
    1. python pdt_fninf_web.py
-   2. demo: find access the Google Chrome in https://127.0.0.1:8080/index
+   2. demo: Using the Google Chrome to request services in https://127.0.0.1:8080/index
   
   ##Step3：Select the information object category within ["Projects","Databases","Tooklkits"];
   
