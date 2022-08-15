@@ -5,14 +5,16 @@ In order to accelerate progress in cohort studies, we proposed a hierarchical ne
 
 
 # How to use it 
-  #Step1: Download and unzip the Github repository to your local or server;
-  -- git clone  
-  -- tar xzvf PDT_fninf.tar.gz your local path/PDT_fninf
+  ##Step1: Download and unzip the Github repository to your local or server;
+   1. git clone https://github.com/Romantic-Pumpkin/PDT_fninf.git
+   2. tar xzvf PDT_fninf.tar.gz your local path/PDT_fninf
   
-  #Step2：Start the flask-based API service;
+  ##Step2：Start the flask-based API service;
+   1. python 
+   2. 
   
-  #Step3：Select the information object category within ["Projects","Databases","Tooklkits"];
+  ##Step3：Select the information object category within ["Projects","Databases","Tooklkits"];
   
-  #Step4：Input the corresponding keywords like "neuroimaging;austim";
+  ##Step4：Input the corresponding keywords like "neuroimaging;austim";
   
-  #Step5：Press Enter to retrieve the content your need.
+  ##Step5：Press Enter to retrieve the content your need.
